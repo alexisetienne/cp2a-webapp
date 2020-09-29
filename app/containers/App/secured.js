@@ -3,6 +3,7 @@ import Keycloak from 'keycloak-js';
 import Button from '@material-ui/core/Button';
 import { withKeycloak } from '@react-keycloak/web';
 import UserInfo from '../../components/userInfo';
+import Loader from '../../components/Loader';
 
 const keycloak = new Keycloak({
   url: 'http://localhost:8080/auth',
@@ -39,7 +40,11 @@ class Secured extends Component {
         );
       return <div>Unable to authenticate!</div>;
     }
-    return <div>Initializing Keycloak...</div>;
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
   }
 }
 export default withKeycloak(Secured);

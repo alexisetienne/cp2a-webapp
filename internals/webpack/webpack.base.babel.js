@@ -3,7 +3,7 @@
  */
 
 const path = require('path');
-const webpack = require('webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = options => ({
   mode: options.mode,
@@ -111,16 +111,17 @@ module.exports = options => ({
     // Always expose NODE_ENV to webpack, in order to use `process.env.NODE_ENV`
     // inside your code for any environment checks; Terser will automatically
     // drop any unreachable code.
-    new webpack.EnvironmentPlugin({
-      NODE_ENV: 'development',
-    }),
+    // new webpack.NamedModulesPlugin(),
+    // new CompressionPlugin(),
+    new CopyWebpackPlugin([{ from: 'app/img', to: 'img' }]),
   ]),
   resolve: {
-    modules: ['node_modules', 'app'],
+    modules: options.modules || ['node_modules', 'app'],
     extensions: ['.js', '.jsx', '.react.js'],
     mainFields: ['browser', 'jsnext:main', 'main'],
   },
   devtool: options.devtool,
-  target: 'web', // Make web variables accessible to webpack, e.g. window
+  target: options.target || 'web', // Make web variables accessible to webpack, e.g. window
+  externals: options.externals || [],
   performance: options.performance || {},
 });

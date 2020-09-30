@@ -1,0 +1,22 @@
+[
+  {
+    "id": 0,
+    "input": "title",
+    "name": "titre de l'annonce"
+  },
+  {
+    "id": 1,
+    "input": "society",
+    "name": "nom de la société/Mairie"
+  },
+  {
+    "id": 2,
+    "input": "city",
+    "name": "Ville et code postal"
+  },
+  {
+    "id": 3,
+    "input": "date",
+    "name": "Date limite de candidatures"
+  }
+]
